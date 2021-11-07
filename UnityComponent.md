@@ -15,8 +15,13 @@
 ## 4. Renderer
 渲染组件，用于控制物体的颜色、材质，以及渲染图层等
 
-## 5. Animation
-动画组件，用于播放游戏动画
+## 5. Animator
+动画控制组件，用于控制游戏动画的播放、切换等
+Animator Controller：动画控制器，创建添加至Animator组件上，即可实现动画控制
+Animation：各种录制好的动画
+Animator Parameter：动画切换参数，根据参数控制动画的切换
+编辑界面：windows->Animation->Animator
+可以编辑多个动画的切换，并且可以观察到当前播放的帧
 
 ## 6.Rigidbody2D
 刚体组件，用于赋予gameobject虚拟物理属性，如：重力，速度，摩擦力等
