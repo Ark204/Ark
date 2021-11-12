@@ -1,5 +1,13 @@
 # Unity Component
 
+## 0.Component通用
+| 常用成员 | 作用 |
+| :--: | :--: |
+| enable | 设置组件是否使用 |
+
+| 常用成员方法 | 作用 |
+| :--: | :--: |
+| Invoke | 调用某个函数，可设置延迟时间 |
 ## 1. Transform
 变换组件，用来描述物体在游戏世界中的位置（location）、旋转（rotation）、缩放（scale）
 每种变换对应一个三维向量Vector
@@ -8,9 +16,26 @@
 
 ## 2. Camera
 摄像机组件，用来将视锥中的游戏物体显示到屏幕上
+Cinemachine中的Camera2D
+**注意：添加进场景后将替换原有的摄像机**
+可以更加方便地使用摄像机，控制镜头的跟踪、移动区域、最大移动范围、设置跟踪点
+Cinemachine Confiner
+控制镜头最大移动范围
+需要添加一个Polygon Collider2D组件确定范围，一旦与Polygon Collider2D发生碰撞，镜头就会停止碰撞方向的运动
 
 ## 3. Collider
 碰撞体组件，用于收集发送碰撞消息、模拟物理效果
+| 常用成员 | 作用 |
+| :--: | :--: |
+| Material | 物理材质，设置碰撞器的摩擦系数等 |
+| is Trigger | 勾选时作为触发器，即收集发送碰撞消息，但不模拟物理碰撞效果 |
+常用碰撞
+1. 与LayerMask（游戏图层）的碰撞
+2. 与Tag（标记）的碰撞
+3. 与Physics2D.OverlapCircle(point)的碰撞
+[注]: Physics2D.OverlapCircle(point)是一个物理系统函数，返回值是bool，用来判断给定point上方一个圆形区域是否存在碰撞器
+
+Polygon Collider2D多边形2D碰撞器，可与Cinemachine Confiner配合控制镜头最大移动范围
 
 ## 4. Renderer
 渲染组件，用于控制物体的颜色、材质，以及渲染图层等
