@@ -6,7 +6,7 @@
 
 根据此部分具体分析
 
-![1636012205759](C:\Users\13719\AppData\Roaming\Typora\typora-user-images\1636012205759.png)
+![1636012205759](Pictures/1636012205759.png)
 
 发现第一个0121E888这个链表头两个指针，一个指向头，一个指向尾，然后剩下的是一个存放数据的循环链表
 
@@ -27,29 +27,29 @@ public:
 
 这里还是以人物血量为突破口
 
-![1636088043359](C:\Users\13719\AppData\Roaming\Typora\typora-user-images\1636088043359.png)
+![1636088043359](Pictures/1636088043359.png)
 
 用CE在血量地址处下访问断点，然后点击人物血量，触发断点
 
-![1636088123782](C:\Users\13719\AppData\Roaming\Typora\typora-user-images\1636088123782.png)
+![1636088123782](Pictures/1636088123782.png)
 
 断点断下，[eax+8]是人物的血量，追eax的数据来源，eax来自[esi+0xC]，继续往上追esi
 
 `血量p=[esi+0xC]+8`
 
-![1636088344564](C:\Users\13719\AppData\Roaming\Typora\typora-user-images\1636088344564.png)
+![1636088344564](Pictures/1636088344564.png)
 
 esi来自于ecx，返回上层找ecx
 
-![1636088370889](C:\Users\13719\AppData\Roaming\Typora\typora-user-images\1636088370889.png)
+![1636088370889](Pictures/1636088370889.png)
 
 ecx又来源于ebx
 
-![1636088409808](C:\Users\13719\AppData\Roaming\Typora\typora-user-images\1636088409808.png)
+![1636088409808](Pictures/1636088409808.png)
 
 ebx来源于ecx
 
-![1636088608948](C:\Users\13719\AppData\Roaming\Typora\typora-user-images\1636088608948.png)
+![1636088608948](Pictures/1636088608948.png)
 
 ecx=[esi+0xC]
 
@@ -61,7 +61,7 @@ ecx=[esi+0xC]
 
 继续往上追esi
 
-![1636088987314](C:\Users\13719\AppData\Roaming\Typora\typora-user-images\1636088987314.png)
+![1636088987314](Pictures/1636088987314.png)
 
 esi=[eax]
 
@@ -81,7 +81,7 @@ esi不来自循环体外的eax，也就说明是来自循环体内的[esi]，esi
 
 所以上面这段代码就是通过对Node节点的循环遍历，来找到想要的目标节点，一旦找到就跳出循环体外
 
-![1636089533320](C:\Users\13719\AppData\Roaming\Typora\typora-user-images\1636089533320.png)
+![1636089533320](Pictures/1636089533320.png)
 
 esi来源于[eax]，eax就是当前的链表头，这里可以对当前的链表进行取值
 
