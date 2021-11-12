@@ -1,5 +1,10 @@
 # Unity GameObject
 
+## GameObject
+文件目录查找游戏场景中的GameObject：
+`GameObject.Find("grandparent/parent/child");`
+获取到child对象
+
 ## TileMap
 2D网格地图
 使用步骤：
