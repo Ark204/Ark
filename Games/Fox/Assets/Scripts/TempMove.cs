@@ -45,7 +45,7 @@ public class TempMove : MonoBehaviour
         if(Input.GetButtonDown("Jump"))
         {
             myrigidbody2D.velocity = new Vector2(myrigidbody2D.velocity.x, Time.deltaTime*jumpforce);
-            myanimator.SetBool("jumping", true);
+            //myanimator.SetBool("jumping", true);
         }
     }
     void SwitchAnim()
@@ -55,13 +55,13 @@ public class TempMove : MonoBehaviour
         {
             if(myrigidbody2D.velocity.y<0)
             {
-                myanimator.SetBool("jumping", true);
-                myanimator.SetBool("falling", true);
+                //myanimator.SetBool("jumping", true);
+                //.SetBool("falling", true);
             }
             else if(mycollider2D.IsTouchingLayers(ground))
             {
-                myanimator.SetBool("jumping", false);
-                myanimator.SetBool("falling", false);
+                //myanimator.SetBool("jumping", false);
+                //myanimator.SetBool("falling", false);
             }
         }
     }

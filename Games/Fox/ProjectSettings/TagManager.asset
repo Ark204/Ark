@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemies
+  - Ladder
+  - Fox
+  - Silk
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -49,4 +54,10 @@ TagManager:
     locked: 0
   - name: Map
     uniqueID: 365114703
+    locked: 0
+  - name: Ladder
+    uniqueID: 3891877943
+    locked: 0
+  - name: Player
+    uniqueID: 66910969
     locked: 0
