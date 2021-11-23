@@ -3291,7 +3291,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.59283787, y: 2.7240367, z: -10}
+  m_LocalPosition: {x: 0.59283024, y: 2.7233243, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3395,10 +3395,8 @@ GameObject:
   - component: {fileID: 788151101}
   - component: {fileID: 788151097}
   - component: {fileID: 788151096}
-  - component: {fileID: 788151106}
   - component: {fileID: 788151105}
   - component: {fileID: 788151102}
-  - component: {fileID: 788151100}
   - component: {fileID: 788151104}
   - component: {fileID: 788151103}
   m_Layer: 0
@@ -3515,31 +3513,14 @@ Transform:
   m_GameObject: {fileID: 788151095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.593, y: 1.04, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1509855868}
   - {fileID: 878095377}
+  - {fileID: 1604866857}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &788151100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788151095}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 567074576df36f14fa72490f089e6c4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mycollider2D: {fileID: 0}
-  ground:
-    serializedVersion: 2
-    m_Bits: 512
-  speed: 500
-  jumpforce: 400
 --- !u!95 &788151101
 Animator:
   serializedVersion: 3
@@ -3604,15 +3585,30 @@ MonoBehaviour:
   jumpCount: 2
   shutStartdistance: 1
   crouchdistance: -0.5
+  sprintdistance: 10
+  sprintspeed: 30
+  sprintTime: 0.1
+  MaxRed: 5
+  Red: 5
+  cutforce: 1
+  cutCount: 2
+  cutTime: 0.5
+  cutPressed: 0
+  sprintPressed: 0
   silkPressed: 0
   jumpPressed: 0
   shutPressed: 0
   grouchPressed: 0
   climbPressed: 0
   inLadder: 0
+  attackR: 0.5
+  attackPoint: {fileID: 1604866857}
   silkStart: {fileID: 878095377}
   CellingCheck: {fileID: 1509855868}
   Ladder: {fileID: 0}
+  enemies:
+    serializedVersion: 2
+    m_Bits: 1024
   layerMask:
     serializedVersion: 2
     m_Bits: 512
@@ -3653,22 +3649,6 @@ PolygonCollider2D:
       - {x: 0.3745316, y: -0.88435453}
       - {x: 0.43682078, y: -0.7496308}
       - {x: 0.43692136, y: 0.3784333}
---- !u!58 &788151106
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788151095}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.019237101, y: -0.85867345}
-  serializedVersion: 2
-  m_Radius: 0.13496406
 --- !u!1 &878095376
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,7 +3790,7 @@ GameObject:
   - component: {fileID: 1061664530}
   - component: {fileID: 1061664529}
   - component: {fileID: 1061664534}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Oppssum
   m_TagString: Enemies
   m_Icon: {fileID: 0}
@@ -3961,6 +3941,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackforce: 5
+  MaxRed: 5
+  Red: 5
 --- !u!1 &1095226642
 GameObject:
   m_ObjectHideFlags: 0
@@ -4199,6 +4181,53 @@ Transform:
   m_Father: {fileID: 925851737}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1604866856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1604866857}
+  - component: {fileID: 1604866858}
+  m_Layer: 0
+  m_Name: CutPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1604866857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604866856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.956, y: -0.39, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 788151099}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1604866858
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1604866856}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1705728816
 GameObject:
   m_ObjectHideFlags: 0

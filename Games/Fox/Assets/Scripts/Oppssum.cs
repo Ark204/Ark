@@ -5,6 +5,8 @@ using UnityEngine;
 public class Oppssum : MonoBehaviour
 {
     public float attackforce = 15;
+    public int MaxRed = 5;
+    public int Red = 5;
     // Start is called before the first frame update
     void Start()
     {

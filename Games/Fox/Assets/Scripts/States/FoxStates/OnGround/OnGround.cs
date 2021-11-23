@@ -9,10 +9,13 @@ public class OnGround : FoxState
         base.enter(stateController);
         //进入地面状态时重新设置跳跃次数
         m_fox.jumpCount = 2;
+        //重新设置砍次数
+        m_fox.cutCount = 2;
     }
     public override void update()
     {
         base.update();
+        Sprint();
         GroundJump();
         Grouch();
         GroundFall();
@@ -24,7 +27,6 @@ public class OnGround : FoxState
         if(m_fox.jumpPressed)
         {
             //切换为跳跃状态
-            //m_animator.SetBool("running", false);
             m_stateController.ChangeState(FoxState.up);
             m_fox.jumpPressed = false;
         }
@@ -45,6 +47,16 @@ public class OnGround : FoxState
 
             //切换为趴下状态
             m_stateController.ChangeState(FoxState.grouch);
+        }
+    }
+    protected void Sprint()
+    {
+        if(m_fox.sprintPressed)
+        {
+            //切换为冲刺状态
+            m_stateController.ChangeState(FoxState.sprint);
+            //重置按键
+            m_fox.sprintPressed = false;
         }
     }
 }

@@ -13,6 +13,8 @@ public class FoxState : IState
     public static Climb climb = new Climb();
     public static Hurt hurt = new Hurt();
     public static SilkJump silkJump = new SilkJump();
+    public static Sprint sprint = new Sprint();
+    public static Cut cut = new Cut();
 
     //components
     protected Animator m_animator;
@@ -33,7 +35,8 @@ public class FoxState : IState
     {
         //移动输入更新
         MoveMent();
-        Shut();
+        Cut();
+        //Shut();
         Silk();
         Climb();
     }
@@ -92,6 +95,14 @@ public class FoxState : IState
             //旋转发射点
             m_fox.silkStart.transform.Rotate(0, 0,m_transform.localScale.x* degree);
             m_fox.silkPressed = false;
+        }
+    }
+    protected void Cut()
+    {
+        if(m_fox.cutPressed)
+        {
+            m_fox.cutPressed = false;
+            m_stateController.ChangeState(FoxState.cut);
         }
     }
 }

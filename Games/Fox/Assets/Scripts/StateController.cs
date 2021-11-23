@@ -16,7 +16,7 @@ public class StateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     private void FixedUpdate()
     {
@@ -33,7 +33,7 @@ public class StateController : MonoBehaviour
         //调用新状态进入函数
         m_state.enter(this);
     }
-    
+
     public void Return()
     {
         //返回站立状态
@@ -48,10 +48,26 @@ public class StateController : MonoBehaviour
     {
         ChangeState(FoxState.up);
     }
-    
+
     public GameObject LoadPrefabs(string path)
     {
         GameObject prefab = (GameObject)Instantiate(Resources.Load(path));
         return prefab;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        m_state.onCollisionEnter2D(collision);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        m_state.onTriggerEnter2D(collision);
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        m_state.onTriggerStay2D(collision);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        m_state.onTriggerExit2D(collision);
     }
 }
