@@ -5,9 +5,10 @@ using UnityEngine;
 public class Sprint : OnGround
 {
     private float moveTime;
-    public override void enter(StateController stateController)
+    public Sprint(StateController stateController) : base(stateController) { }
+    public override void enter()
     {
-        base.enter(stateController);
+        base.enter();
         //初始化移动时间
         moveTime= m_fox.sprintTime;
         //进入无敌
@@ -23,7 +24,7 @@ public class Sprint : OnGround
         //如果冲刺结束
         if(moveTime<0)
         {
-            m_stateController.ChangeState(FoxState.idle);
+            m_stateController.ChangeState("Idle");
         }
         else
         {

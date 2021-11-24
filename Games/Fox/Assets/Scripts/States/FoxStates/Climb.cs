@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Climb : FoxState
 {
-    public override void enter(StateController stateController)
+    public Climb(StateController stateController) : base(stateController) { }
+    public override void enter()
     {
-        base.enter(stateController);
+        base.enter();
         LockLocation();
         //³õÊ¼»¯ÌøÔ¾´ÎÊı
         m_fox.jumpCount = 2;
@@ -27,7 +27,7 @@ public class Climb : FoxState
         if(!m_fox.inLadder)
         {
             //ÇĞ»»»Øµ½Õ¾Á¢×´Ì¬
-            m_stateController.ChangeState(FoxState.idle);
+            m_stateController.ChangeState("Idle");
         }
         //ÅÊÅÀÌøÔ¾
         Jump();
@@ -52,7 +52,7 @@ public class Climb : FoxState
         if (m_fox.jumpPressed)
         {
             //ÇĞ»»ÎªÌøÔ¾×´Ì¬
-            m_stateController.ChangeState(FoxState.up);
+            m_stateController.ChangeState("Up");
             m_fox.jumpPressed = false;
         }
     }

@@ -49,7 +49,7 @@ public class Silk : MonoBehaviour
             Vector2 direction = new Vector2(hitPoint.x - playerPoint.x, hitPoint.y - playerPoint.y);
             //方向单位化
             direction.Normalize();
-            m_transform.parent.GetComponent<StateController>().ChangeState(FoxState.silkJump);
+            m_transform.parent.GetComponent<StateController>().ChangeState("SilkJump");
             m_transform.parent.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x * pullforce, direction.y * pullforce);
             touch = true;
         }

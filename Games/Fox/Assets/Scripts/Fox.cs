@@ -4,30 +4,44 @@ using UnityEngine;
 
 public class Fox : MonoBehaviour
 {
-
     //public member
-    public float speed = 10;
-    public float jumpforce =15;
-    public int jumpCount = 3;
+    public float speed = 10; //基础移动速度
+    //jump
+    public float jumpforce =10;  //跳跃力
+    public int jumpCount = 2;  //跳跃次数
+    //sprint  
+    public float sprintspeed = 30;  //冲刺速度
+    public float sprintTime = 0.1f;  //冲刺时间
+    //Bleed
+    public int MaxRed = 5;  //最大血量
+    public int Red = 5;  //当前血量
+    public int Maxbalance = 3;  //最大平衡值
+    public int balance = 3;  //当前平衡值
+    //cut
+    public int cutforce = 1;  //攻击力
+    public int cutCount = 2;  //攻击次数
+    public float cutTime = 0.5f;  //攻击时间
+    public float attackR=0.5f;  //攻击半径
+    //stiff
+    public float stiffTime = 0.5f; //硬直时间
+    //Obsolete
+    [System.Obsolete("", true)]
     public float shutStartdistance = 1;
+    [System.Obsolete("", true)]
     public float crouchdistance = -0.5f;
+    [System.Obsolete("", true)]
+    public bool shutPressed = false;
+    [System.Obsolete("",true)]
     public float sprintdistance = 10;
-    public float sprintspeed = 30;
-    public float sprintTime = 0.3f;
-    public int MaxRed = 5;
-    public int Red = 5;
-    public int cutforce = 1;
-    public int cutCount = 2;
-    public float cutTime = 0.5f;
+    //Inputs
     public bool cutPressed = false;
     public bool sprintPressed = false;
     public bool silkPressed = false;
     public bool jumpPressed = false;
-    public bool shutPressed = false;
-    public bool grouchPressed = false;
+    public bool defensePressed = false;
     public bool climbPressed = false;
     public bool inLadder = false;
-    public float attackR;
+    
     public Transform attackPoint;
     public Transform silkStart;
     public Transform CellingCheck;
@@ -49,17 +63,17 @@ public class Fox : MonoBehaviour
         {
             jumpPressed = true;
         }
-        if (Input.GetButtonDown("Shut"))
-        {
-            shutPressed = true;
-        }
+        //if (Input.GetButtonDown("Shut"))
+        //{
+        //    shutPressed = true;
+        //}
         if (Input.GetButtonDown("Grouch"))
         {
-            grouchPressed = true;
+            defensePressed = true;
         }
         if (Input.GetButtonUp("Grouch"))
         {
-            grouchPressed = false;
+            defensePressed = false;
         }
         if (Input.GetButtonDown("Vertical"))
         {

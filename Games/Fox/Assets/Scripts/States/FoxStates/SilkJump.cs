@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class SilkJump : FoxState
 {
-    public override void enter(StateController stateController)
+    public SilkJump(StateController stateController) : base(stateController) { }
+    public override void enter()
     {
-        base.enter(stateController);
         m_animator.Play("somersault");
     }
     public override void update()

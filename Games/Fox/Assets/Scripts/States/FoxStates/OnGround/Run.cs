@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Run : OnGround
 {
-    public override void enter(StateController stateController)
+    public Run(StateController stateController) : base(stateController) { }
+    public override void enter()
     {
-        base.enter(stateController);
+        base.enter();
         //¶¯»­ÇÐ»»Îªrunning
         m_animator.Play("run");
     }
@@ -17,7 +18,7 @@ public class Run : OnGround
         if(Mathf.Abs(m_rigidbody2D.velocity.x)<0.2)
         {
             //ÇÐ»»Îªidle×´Ì¬
-            m_stateController.ChangeState(FoxState.idle);
+            m_stateController.ChangeState("Idle");
         }
     }
 }

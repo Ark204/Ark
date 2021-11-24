@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Up : Onsky
 {
-    public override void enter(StateController stateController)
+    public Up(StateController stateController) : base(stateController) { }
+    public override void enter()
     {
-        base.enter(stateController);
         //动画切换为jumping
         m_animator.Play("jump");
         //跳跃次数减一
@@ -22,7 +22,7 @@ public class Up : Onsky
         if(m_rigidbody2D.velocity.y<0)
         {
             //切换为下落状态
-            m_stateController.ChangeState(FoxState.down);
+            m_stateController.ChangeState("Down");
         }
     }
 }

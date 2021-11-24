@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Down : Onsky
 {
-    public override void enter(StateController stateController)
+    public Down(StateController stateController) : base(stateController) { }
+    public override void enter()
     {
-        base.enter(stateController);
         //¶¯»­ÇÐ»»»Ødown
         m_animator.Play("fall");
     }
@@ -17,7 +17,7 @@ public class Down : Onsky
         if (m_rigidbody2D.velocity.y == 0)
         {
             //ÇÐ»»ÎªÕ¾Á¢×´Ì¬
-            m_stateController.ChangeState(FoxState.idle);
+            m_stateController.ChangeState("Idle");
         }
     }
 }

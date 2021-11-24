@@ -4,42 +4,43 @@ using UnityEngine;
 
 public class FoxState : IState
 {
-    //static Fox's states
-    public static Idle idle = new Idle();
-    public static Run run= new Run();
-    public static Up up= new Up();
-    public static Down down= new Down();
-    public static Grouch grouch = new Grouch();
-    public static Climb climb = new Climb();
-    public static Hurt hurt = new Hurt();
-    public static SilkJump silkJump = new SilkJump();
-    public static Sprint sprint = new Sprint();
-    public static Cut cut = new Cut();
-
+    //stateController
+    protected StateController m_stateController;
     //components
     protected Animator m_animator;
     protected Rigidbody2D m_rigidbody2D;
     protected Fox m_fox;
     protected Transform m_transform;
-    //类似常规脚本中的start
-    public override void enter(StateController stateController)
+    //构造函数
+    public FoxState(StateController stateController)
     {
+        //stateController绑定
+        m_stateController = stateController;
         //组件获取
-        base.enter(stateController);
         m_animator = m_stateController.GetComponent<Animator>();
         m_rigidbody2D = m_stateController.GetComponent<Rigidbody2D>();
         m_fox = m_stateController.GetComponent<Fox>();
         m_transform = m_stateController.GetComponent<Transform>();
     }
-    public override void update()
+    //接口实现
+    public virtual void enter(){}
+    public virtual void update()
     {
         //移动输入更新
         MoveMent();
         Cut();
-        //Shut();
         Silk();
         Climb();
+        //Shut();
     }
+    public virtual void exit(){}
+    public virtual void onCollisionEnter2D(Collision2D collision) { }
+
+    public virtual void onTriggerEnter2D(Collider2D collision) { }
+
+    public virtual void onTriggerStay2D(Collider2D collision) { }
+
+    public virtual void onTriggerExit2D(Collider2D collision) { }
     //通用移动方法
     protected void MoveMent()
     {
@@ -51,28 +52,24 @@ public class FoxState : IState
             m_transform.localScale = new Vector3(horizontalmove, 1, 1);
         }
     }
-    //通用射击方法
-    protected virtual void Shut()
+    protected void Cut()
     {
-        //如果按下射击
-        if(m_fox.shutPressed)
+        if (m_fox.cutPressed)
         {
-            GameObject bullet = m_stateController.LoadPrefabs("Prefabs/bullet");
-            bullet.transform.position = new Vector2(m_transform.position.x + m_fox.shutStartdistance * m_transform.localScale.x, m_transform.position.y);
-            Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
-            bulletRb.velocity = new Vector2(10 * m_transform.localScale.x, bulletRb.velocity.y);
-            m_fox.shutPressed = false;
+            m_fox.cutPressed = false;
+            m_stateController.ChangeState("Cut");
         }
     }
+    //扩展功能
     protected void Climb()
     {
         //如果按下“上/下”键，且在梯子周围
         if (m_fox.climbPressed&&m_fox.inLadder)
         {
             //防止后面被切换为趴下状态
-            m_fox.grouchPressed = false;
+            m_fox.defensePressed = false;
             //切换为climb状态
-            m_stateController.ChangeState(FoxState.climb);
+            m_stateController.ChangeState("Climb");
         }
     }
     protected virtual void Silk()
@@ -97,12 +94,18 @@ public class FoxState : IState
             m_fox.silkPressed = false;
         }
     }
-    protected void Cut()
-    {
-        if(m_fox.cutPressed)
-        {
-            m_fox.cutPressed = false;
-            m_stateController.ChangeState(FoxState.cut);
-        }
-    }
+    //通用射击方法
+    //protected virtual void Shut()
+    //{
+    //    //如果按下射击
+    //    if(m_fox.shutPressed)
+    //    {
+    //        GameObject bullet = m_stateController.LoadPrefabs("Prefabs/bullet");
+    //        bullet.transform.position = new Vector2(m_transform.position.x + m_fox.shutStartdistance * m_transform.localScale.x, m_transform.position.y);
+    //        Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
+    //        bulletRb.velocity = new Vector2(10 * m_transform.localScale.x, bulletRb.velocity.y);
+    //        m_fox.shutPressed = false;
+    //    }
+    //}
+    
 }

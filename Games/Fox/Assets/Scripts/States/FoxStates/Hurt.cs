@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Hurt : FoxState
 {
-    public override void enter(StateController stateController)
+    public Hurt(StateController stateController) : base(stateController) { }
+    public override void enter()
     {
-        base.enter(stateController);
+        base.enter();
         //²¥·Åhurt¶¯»­
         m_animator.Play("hurt");
     }
