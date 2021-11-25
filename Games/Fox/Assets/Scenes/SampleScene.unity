@@ -315,7 +315,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &104503682
 GameObject:
@@ -3321,7 +3321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.59283406, y: 2.724205, z: -10}
+  m_LocalPosition: {x: 11.418728, y: 4.512724, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3405,7 +3405,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523738934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.593, y: 1.04, z: -10}
+  m_LocalPosition: {x: 11.41, y: 6.13, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 104503683}
@@ -3543,14 +3543,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 788151095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.593, y: 1.04, z: 0}
+  m_LocalPosition: {x: 11.41, y: 6.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1509855868}
   - {fileID: 878095377}
   - {fileID: 1604866857}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &788151100
 MonoBehaviour:
@@ -3632,7 +3632,7 @@ MonoBehaviour:
   MaxRed: 5
   Red: 5
   Maxbalance: 3
-  balance: 3
+  balance: 0
   cutforce: 1
   cutCount: 2
   cutTime: 0.5
@@ -3653,6 +3653,7 @@ MonoBehaviour:
   silkStart: {fileID: 878095377}
   CellingCheck: {fileID: 1509855868}
   Ladder: {fileID: 1828579438}
+  enemy: {fileID: 0}
   enemies:
     serializedVersion: 2
     m_Bits: 1024
@@ -3754,7 +3755,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &925851735
 GameObject:
@@ -3987,7 +3988,7 @@ Transform:
   m_Children:
   - {fileID: 2035563773}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1061664533
 Animator:
@@ -4023,16 +4024,18 @@ MonoBehaviour:
   speed: 4
   chasespeed: 6
   idleTime: 2
-  MaxRed: 5
-  Red: 5
+  MaxHP: 5
+  HP: 5
   Maxbalance: 1
-  balance: 1
+  balance: 0
   cutforce: 1
   cutCount: 2
   cutTime: 0.5
   attackR: 0.5
   stiffTime: 0.5
+  stiffmulyiple: 1
   attackforce: 5
+  checkAttack: 0
   patrolPoint:
   - {fileID: 99267946}
   - {fileID: 886642586}
@@ -4040,6 +4043,10 @@ MonoBehaviour:
   - {fileID: 1886815663}
   - {fileID: 1595388350}
   target: {fileID: 0}
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 8192
+  attackPoint: {fileID: 2035563773}
 --- !u!114 &1061664535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4331,7 +4338,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1604866856
 GameObject:
@@ -4826,7 +4833,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2035563772
 GameObject:
@@ -4853,7 +4860,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2035563772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.75, y: 0, z: 0}
+  m_LocalPosition: {x: -1.6, y: -0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1061664532}

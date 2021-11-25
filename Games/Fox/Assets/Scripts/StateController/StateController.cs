@@ -64,6 +64,10 @@ public class StateController : MonoBehaviour
         GameObject prefab = (GameObject)Instantiate(Resources.Load(path));
         return prefab;
     }
+    public string CurrentState()
+    {
+        return m_state.ToString();
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         m_state.onCollisionEnter2D(collision);
@@ -79,5 +83,9 @@ public class StateController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         m_state.onTriggerExit2D(collision);
+    }
+    public void StateEvent()
+    {
+        m_state.OnEvent();
     }
 }

@@ -13,10 +13,10 @@ public class Sprint : OnGround
         moveTime= m_fox.sprintTime;
         //进入无敌
         //取消重力
-        m_rigidbody2D.gravityScale = 0;
-        //取消两个碰撞器
-        m_stateController.GetComponent<BoxCollider2D>().enabled = false;
-        m_stateController.GetComponent<PolygonCollider2D>().enabled = false;
+        //m_rigidbody2D.gravityScale = 0;
+        ////取消两个碰撞器
+        //m_stateController.GetComponent<BoxCollider2D>().enabled = false;
+        //m_stateController.GetComponent<PolygonCollider2D>().enabled = false;
     }
     public override void update()
     {
@@ -34,10 +34,10 @@ public class Sprint : OnGround
     public override void exit()
     {
         //还原两个碰撞器
-        m_stateController.GetComponent<BoxCollider2D>().enabled = true;
-        m_stateController.GetComponent<PolygonCollider2D>().enabled = true;
-        //恢复重力
-        m_rigidbody2D.gravityScale = 3;
+        //m_stateController.GetComponent<BoxCollider2D>().enabled = true;
+        //m_stateController.GetComponent<PolygonCollider2D>().enabled = true;
+        ////恢复重力
+        //m_rigidbody2D.gravityScale = 3;
         //退出无敌
     }
 }

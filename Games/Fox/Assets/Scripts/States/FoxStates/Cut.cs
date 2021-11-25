@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Cut : FoxState
@@ -15,11 +13,11 @@ public class Cut : FoxState
         m_fox.cutCount--;
         if(m_fox.cutCount==1)
         {
-            Debug.Log("播放第一砍动画");
+            Debug.Log("主角：播放第一砍动画");
         }
         if(m_fox.cutCount==0)
         {
-            Debug.Log("播放第二砍动画");
+            Debug.Log("主角：播放第二砍动画");
         }
         //开启攻击范围
         m_stateController.GetComponentInChildren<CircleCollider2D>().enabled = true;
@@ -27,13 +25,24 @@ public class Cut : FoxState
     public override void update()
     {
         cutTime -= Time.fixedDeltaTime;
+        //二段砍
         if(m_fox.cutPressed&&m_fox.cutCount>0)
         {
             m_fox.cutPressed = false;
             //进入二砍状态
             m_stateController.ChangeState("Cut");
         }
-        //如果砍完了
+        //砍到一半攻击生效
+        if(m_fox.cutTime/2-Time.fixedDeltaTime < cutTime && cutTime < m_fox.cutTime/2
+            && Physics2D.OverlapCircle(m_fox.attackPoint.position, m_fox.attackR, m_fox.enemies))
+        {
+            //调用敌人受到生效攻击函数
+            if(m_fox.enemy!=null)
+            {
+                m_fox.enemy.GetComponent<StateController>().StateEvent();
+            }
+        }
+        //砍完了
         if(cutTime<0)
         {
             //如果是第二次斩结束
@@ -51,14 +60,12 @@ public class Cut : FoxState
     {
         m_stateController.GetComponentInChildren<CircleCollider2D>().enabled = false;
     }
-    public override void onTriggerExit2D(Collider2D collision)
+    //检测敌人是否在范围内
+    public override void onTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag=="Enemies")
+        if (collision.gameObject.tag == "Enemies")
         {
-            Debug.Log("焯");
-            collision.GetComponent<Oppssum>().Red -= 1;
-            //弹开敌人
-            //collision.GetComponent<Rigidbody2D>().velocity = new Vector2(m_transform.localScale.x * 5, 5);
+            m_fox.enemy = collision.transform;
         }
     }
 }

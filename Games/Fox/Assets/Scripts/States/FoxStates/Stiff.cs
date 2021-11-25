@@ -9,7 +9,7 @@ public class Stiff : FoxState
     public override void enter()
     {
         //播放hurt动画
-        Debug.Log("播放硬直动画");
+        Debug.Log("主角：播放硬直动画");
         lastTime = m_fox.stiffTime;
     }
     public override void update()
@@ -22,6 +22,6 @@ public class Stiff : FoxState
     }
     public override void exit()
     {
-        Debug.Log("硬直结束");
+        Debug.Log("主角：硬直结束");
     }
 }

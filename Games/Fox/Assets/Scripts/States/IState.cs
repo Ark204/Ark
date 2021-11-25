@@ -17,4 +17,6 @@ public interface IState
     void onTriggerStay2D(Collider2D collision);
 
     void onTriggerExit2D(Collider2D collision);
+
+    void OnEvent(); 
 }

@@ -16,7 +16,7 @@ public class Fox : MonoBehaviour
     public int MaxRed = 5;  //最大血量
     public int Red = 5;  //当前血量
     public int Maxbalance = 3;  //最大平衡值
-    public int balance = 3;  //当前平衡值
+    public int balance = 0;  //当前平衡值
     //cut
     public int cutforce = 1;  //攻击力
     public int cutCount = 2;  //攻击次数
@@ -46,7 +46,8 @@ public class Fox : MonoBehaviour
     public Transform silkStart;
     public Transform CellingCheck;
     public Transform Ladder;
-    public LayerMask enemies;
+    public Transform enemy; //敌人
+    public LayerMask enemies; //敌人图层
     public LayerMask layerMask;
     public Vector3 shutPoint;
     // Start is called before the first frame update

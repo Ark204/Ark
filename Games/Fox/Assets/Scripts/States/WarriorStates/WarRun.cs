@@ -20,7 +20,7 @@ public class WarRun : WarriorState
         {
             m_stateController.ChangeState("WarIdle");
         }
-        Chase();
+        Defense();
     }
     public override void exit()
     {
