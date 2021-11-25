@@ -9,12 +9,12 @@ public class WarChase : WarriorState
     {
         //播放跑步动画
         m_animator.Play("run");
-        Debug.Log("Chase");
     }
     public override void update()
     {
         FlipTo(m_oppssum.target);
-        if(m_oppssum.target)
+        Defense();
+        if (m_oppssum.target)
         {
             m_transform.position = Vector2.MoveTowards(m_transform.position,
                 m_oppssum.target.position, m_oppssum.chasespeed * Time.fixedDeltaTime);
@@ -25,11 +25,18 @@ public class WarChase : WarriorState
         {
             m_stateController.ChangeState("WarIdle");
         }
-
+        Attack();
     }
     public override void exit()
     {
-        Debug.Log("exit Chase");
+        
     }
-    
+    private void Attack()
+    {
+        //进行攻击
+        if (Physics2D.OverlapCircle(m_oppssum.attackPoint.position, m_oppssum.attackR, m_oppssum.targetLayer))
+        {
+            m_stateController.ChangeState("WarAttack");
+        }
+    }
 }

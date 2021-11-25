@@ -17,7 +17,7 @@ public class WarIdle : WarriorState
         {
             m_stateController.ChangeState("WarRun");
         }
-        Chase();
+        Defense();
     }
     public override void exit()
     {
