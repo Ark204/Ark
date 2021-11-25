@@ -8,9 +8,10 @@ public class HealthBar : MonoBehaviour
     //生命值
     public Image healthPointImage;//主血条
     public Image healthPointEffect;//缓降血条
+    public Image Enemyhealthpoint;//敌人血条
     private Fox Fox;
     //耐力条
-    public Image endurancePointImage;
+    public Image endurancePointImage;//耐力条
     private void Awake()
     {
          Fox=GameObject.FindGameObjectWithTag("Fox").GetComponentInParent<Fox>();
@@ -31,6 +32,7 @@ public class HealthBar : MonoBehaviour
         }
         else { healthPointEffect.fillAmount = healthPointImage.fillAmount; }
        endurancePointImage.fillAmount=Fox.balance/Fox.Maxbalance;
+       Enemyhealthpoint.fillAmount=Fox.Red / Fox.MaxRed;
     }
     
 }
