@@ -111,6 +111,7 @@ public class Fox : MonoBehaviour
         {
             inLadder = false;
         }
+        
     }
     private void OnDrawGizmos()
     {
