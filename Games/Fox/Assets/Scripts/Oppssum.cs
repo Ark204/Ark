@@ -11,10 +11,10 @@ public class Oppssum : MonoBehaviour
     //idle
     public float idleTime = 2f;  //站立时间
     //Bleed
-    public int MaxRed = 5;  //最大血量
-    public int Red = 5;  //当前血量
+    public int MaxHP = 5;  //最大血量
+    public int HP = 5;  //当前血量
     public int Maxbalance = 1;  //最大平衡值
-    public int balance = 1;  //当前平衡值
+    public int balance = 0;  //当前平衡值
     //cut
     public int cutforce = 1;  //攻击力
     public int cutCount = 2;  //攻击次数
@@ -22,37 +22,43 @@ public class Oppssum : MonoBehaviour
     public float attackR = 0.5f;  //攻击半径
     //stiff
     public float stiffTime = 0.5f; //硬直时间
+    public short stiffmulyiple = 1; //硬直时间倍数
     public float attackforce = 15;
-
+    //defense
+    public bool checkAttack = false;
     //Component
     public Transform[] patrolPoint;
     public Transform[] chasePoint;
     public Transform target;
+    public LayerMask targetLayer;//目标的图层
+    public Transform attackPoint;//攻击范围圆心
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (target != null)
+        {
+            if(target.GetComponent<StateController>().CurrentState()=="Cut")
+            {
+                checkAttack = true;
+            }
+            else
+            {
+                checkAttack = false;
+            }
+        }
     }
     void Death()
     {
         Destroy(gameObject);
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnDrawGizmos()
     {
-        if(collision.gameObject.tag=="Fox")
-        {
-            //使角色受伤
-            //Debug.Log("attack");
-            collision.gameObject.GetComponent<StateController>().ChangeState("Hurt");
-            Rigidbody2D rigidbody2D = collision.gameObject.GetComponent<Rigidbody2D>();
-            Transform transform = collision.gameObject.GetComponent<Transform>();
-            rigidbody2D.velocity = new Vector2(-transform.localScale.x * attackforce, 1 * attackforce);
-        }
+        Gizmos.DrawWireSphere(attackPoint.position, attackR);
     }
 }
